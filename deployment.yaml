@@ -16,7 +16,16 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "flaviovilaca/hello-go:v9"
+          image: "flaviovilaca/hello-go:v10.1"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 2
+            timeoutSeconds: 2
+            successThreshold: 1
           resources:
             limits:
               cpu: "500m"
