@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/secret", Secretabc)
+	http.HandleFunc("/secret", Secret)
 	http.HandleFunc("/configmap", ConfigMap)
 	http.HandleFunc("/", Hello)
 	http.ListenAndServe(":80", nil)
@@ -32,11 +32,10 @@ func ConfigMap(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "<h1>My Family: %s </h1>", string(data))
 }
 
-func Secretabc(w http.ResponseWriter, r *http.Request) {
+func Secret(w http.ResponseWriter, r *http.Request) {
 
-	// user := os.Getenv("USER")
-	// password := os.Getenv("PASSWORD")
+	user := os.Getenv("USER")
+	password := os.Getenv("PASSWORD")
 
-	//fmt.Fprintf(w, "<h1>User: %s   Password: %s . secrets funcionando</h1>", user, password)
-	fmt.Fprintf(w, "<h1>User: </h1>")
+	fmt.Fprintf(w, "<h1>User: %s   Password: %s . secrets funcionando</h1>", user, password)
 }
