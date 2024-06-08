@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "flaviovilaca/hello-go:v7"
+          image: "flaviovilaca/hello-go:v9"
           resources:
             limits:
               cpu: "500m"
@@ -32,6 +32,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
